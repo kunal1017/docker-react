@@ -5,3 +5,15 @@ before_install:
   - docker build -t kunal1017/docker-react -f Dockerfile.dev .
 script:
   - docker run kunal1017/docker-react npm run test -- --coverage
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "Doc"
+  env: "Doc-env"
+  bucket_name: "elasticbeanstalk-us-east-1-217592375229"
+  bucket_path: "Doc"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secreet_access_key: 
+    secure: "AWS_SECRET_KEY"  
